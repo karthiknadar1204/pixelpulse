@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import HomeCard from './HomeCard';
 import MeetingModal from './MeetingModal';
-// import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk';
+import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk';
 import { useUser } from '@clerk/nextjs';
 import Loader from './Loader';
 import { Textarea } from './ui/textarea';
@@ -27,12 +27,12 @@ const MeetingTypeList = () => {
   >(undefined);
   const [values, setValues] = useState(initialValues);
   const [callDetail, setCallDetail] = useState<Call>();
-//   const client = useStreamVideoClient();
+  const client = useStreamVideoClient();
   const { user } = useUser();
   const { toast } = useToast();
 
   const createMeeting = async () => {
-    // if (!client || !user) return;
+    if (!client || !user) return;
     try {
       if (!values.dateTime) {
         toast({ title: 'Please select a date and time' });
@@ -65,7 +65,7 @@ const MeetingTypeList = () => {
     }
   };
 
-//   if (!client || !user) return <Loader />;
+  if (!client || !user) return <Loader />;
 
   const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetail?.id}`;
 
