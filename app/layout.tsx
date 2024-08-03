@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
-import { ClerkProvider} from '@clerk/nextjs'
+import { ClerkProvider } from "@clerk/nextjs";
 
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { StarsBackground } from "@/components/StarsBackground";
+import { ShootingStars } from "@/components/ShootingStars";
+import { Meteors } from "@/components/Meteors"; 
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,21 +26,46 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ClerkProvider
-              appearance={{
-                layout: {
-                  socialButtonsVariant: "iconButton",
-                  logoImageUrl: "/icons/yoom-logo.svg",
-                },
-                variables: {
-                  colorText: "#fff",
-                  colorPrimary: "#0E78F9",
-                  colorBackground: "#1C1F2E",
-                  colorInputBackground: "#252A41",
-                  colorInputText: "#fff",
-                },
-              }}
+        appearance={{
+          layout: {
+            socialButtonsVariant: "iconButton",
+            logoImageUrl: "/icons/yoom-logo.svg",
+          },
+          variables: {
+            colorText: "#fff",
+            colorPrimary: "#0E78F9",
+            colorBackground: "#1C1F2E",
+            colorInputBackground: "#252A41",
+            colorInputText: "#fff",
+          },
+        }}
       >
-        <body className={`${inter.className} bg-dark-2`}>{children}</body>
+        <body className={`${inter.className} bg-dark-2`}>
+          <StarsBackground
+            className="z-[-1] absolute inset-0"
+            starDensity={0.00015}
+            allStarsTwinkle={true}
+            twinkleProbability={0.7}
+            minTwinkleSpeed={0.5}
+            maxTwinkleSpeed={1}
+          />
+          <ShootingStars
+            className="z-[-1] absolute inset-0"
+            minSpeed={10}
+            maxSpeed={30}
+            minDelay={1200}
+            maxDelay={4200}
+            starColor="#9E00FF"
+            trailColor="#2EB9DF"
+            starWidth={10}
+            starHeight={1}
+          />
+          <Meteors
+            number={50}
+            className="z-[-2] absolute inset-0"
+          />
+          {children}
+        </body>
       </ClerkProvider>
     </html>
   );

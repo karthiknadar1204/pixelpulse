@@ -1,4 +1,13 @@
 import MeetingTypeList from '@/components/MeetingTypeList';
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger } from '@/components/modal';
+import { Poppins } from "next/font/google";
+import Image from 'next/image';
+
+const poppins = Poppins({
+  weight: ["400", "600", "700"],
+  style: "normal",
+  subsets: ["latin"],
+});
 
 const Home = () => {
   const now = new Date();
@@ -8,17 +17,29 @@ const Home = () => {
 
   return (
     <section className="flex size-full flex-col gap-5 text-white">
-      <div className="h-[303px] w-full rounded-[20px] bg-hero bg-cover">
-        <div className="flex h-full flex-col justify-between max-md:px-5 max-md:py-8 lg:p-11">
-          <h2 className="glassmorphism max-w-[273px] rounded py-2 text-center text-base font-normal">
-            Upcoming Meeting at: 12:30 PM
-          </h2>
-          <div className="flex flex-col gap-2">
-            <h1 className="text-4xl font-extrabold lg:text-7xl">{time}</h1>
-            <p className="text-lg font-medium text-sky-1 lg:text-2xl">{date}</p>
+      <Modal>
+        <ModalTrigger>
+          <div className="relative h-[303px] w-full rounded-[20px] overflow-hidden group">
+            <Image 
+              src='/bg_img.jpeg' 
+              layout="fill" 
+              objectFit="cover" 
+              alt="Background image"
+              className="absolute inset-0"
+            />
+            <div className="absolute inset-0 flex items-center justify-start group-hover:bg-black/30 transition-all duration-300">
+              <div className="hidden group-hover:flex flex-col justify-center items-start text-left px-5 py-8 text-white">
+                <h1 className={`text-4xl font-bold lg:text-7xl ${poppins.className}`}>
+                  {time}
+                </h1>
+                <p className={`text-lg font-medium text-sky-1 lg:text-2xl ${poppins.className}`}>
+                  {date}
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </ModalTrigger>
+      </Modal>
 
       <MeetingTypeList />
     </section>
