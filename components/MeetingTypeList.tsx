@@ -16,7 +16,7 @@ import { Input } from './ui/input';
 
 const initialValues = {
   dateTime: new Date(),
-  description: '',
+  description: '', 
   link: '',
 };
 

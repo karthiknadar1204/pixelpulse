@@ -24,7 +24,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
         return upcomingCalls;
       default:
         return [];
-    }
+    } 
   };
 
   const getNoCallsMessage = () => {

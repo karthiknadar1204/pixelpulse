@@ -15,7 +15,7 @@ const MeetingSetup = ({
 }: {
   setIsSetupComplete: (value: boolean) => void;
 }) => {
-  // https://getstream.io/video/docs/react/guides/call-and-participant-state/#call-state
+  // https://getstream.io/video/docs/react/guides/call-and-participant-state/  #call-state
   const { useCallEndedAt, useCallStartsAt } = useCallStateHooks();
   const callStartsAt = useCallStartsAt();
   const callEndedAt = useCallEndedAt();
@@ -25,7 +25,7 @@ const MeetingSetup = ({
 
   const call = useCall();
 
-  if (!call) {
+  if (!call) { 
     throw new Error(
       'useStreamCall must be used within a StreamCall component.',
     );
@@ -83,7 +83,7 @@ const MeetingSetup = ({
         }}
       >
         Join meeting
-      </Button>
+      </Button> 
     </div>
   );
 };

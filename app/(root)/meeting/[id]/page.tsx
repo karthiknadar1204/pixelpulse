@@ -33,17 +33,17 @@ const MeetingPage = () => {
   return (
     <main className="h-screen w-full">
       <StreamCall call={call}>
-        <StreamTheme>
+        <StreamTheme> 
 
         {!isSetupComplete ? (
           <MeetingSetup setIsSetupComplete={setIsSetupComplete} />
-        ) : (
+        ) : ( 
           <MeetingRoom />
         )}
         </StreamTheme>
       </StreamCall>
     </main>
   );
-};
+}; 
 
 export default MeetingPage;
