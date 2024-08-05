@@ -307,15 +307,23 @@ const MeetingTypeList = () => {
               Select Date and Time
             </label>
             <ReactDatePicker
-              selected={values.dateTime}
-              onChange={(date: Date) => setValues({ ...values, dateTime: date })}
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={15}
-              timeCaption="time"
-              dateFormat="MMMM d, yyyy h:mm aa"
-              className="w-full rounded bg-dark-3 p-2 focus:outline-none"
-            />
+  selected={values.dateTime}
+  onChange={(date: Date | null) => {
+    // Handle both Date and null cases
+    if (date) {
+      setValues({ ...values, dateTime: date });
+    } else {
+      setValues({ ...values, dateTime: null });
+    }
+  }}
+  showTimeSelect
+  timeFormat="HH:mm"
+  timeIntervals={15}
+  timeCaption="time"
+  dateFormat="MMMM d, yyyy h:mm aa"
+  className="w-full rounded bg-dark-3 p-2 focus:outline-none"
+/>
+
           </div>
         </MeetingModal>
       ) : (
